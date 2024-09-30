@@ -16,7 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
+from movies.views import MoviesListView, MoviesDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    path('', MoviesListView.as_view(), name='movies_list'),
+    path('movies/', MoviesListView.as_view(), name='movies_list'),
+    path('movies/<int:pk>/', MoviesDetailView.as_view(), name='movie_detail'),
 ]
+
+# Habilita uso de mídias no projeto
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

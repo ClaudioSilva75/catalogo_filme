@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flix</title>
+</head>
+<body>
+    {% if movies %}
+        <ul>
+            {% for movie in movies %}
+                {{movie.title}} - {{movie.genre}}
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Não há filmes disponíveis.</p>
+    {% endif %}
+</body>
+</html>

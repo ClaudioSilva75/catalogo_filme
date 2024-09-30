@@ -1,0 +1,12 @@
+<div class="movie-detail">
+    <h1>{{movie.title}}</h1>
+    <img src="{{ movie.photo.url alt="{{ movie.title }}"}}" alt="">
+    <p>{{ movie.resume }}</p>
+    <p>Release Date: <strong> {{ movie.release_date }}</strong></p>
+    <p><strong>Genre:</strong> {{ movie.genre.name }}</p>
+    <p><strong>Actors:</strong>
+        {% for actor in movie.actors.all %}
+            <p> {{ actor.name }} </p>
+        {% endfor %}
+    </p>
+</div>

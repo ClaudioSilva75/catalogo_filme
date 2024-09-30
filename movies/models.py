@@ -39,5 +39,5 @@ class Movie(models.Model):
     
     
     def __str__(self):
-        self.title
+        return self.title
         
