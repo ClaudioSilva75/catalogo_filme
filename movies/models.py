@@ -12,22 +12,22 @@ class Movie(models.Model):
         ('16', '16 anos'),
         ('18', '18 anos'),
     ]
-    title = models.CharField(max_length=300),
+    title = models.CharField(max_length=300)
     genre = models.ForeignKey(
         Genre,
         on_delete=models.PROTECT,
         related_name='movies'
     )
-    release_date = models.DateField(null=True, blank=True),
-    actors = models.ManyToManyField(Actor, related_name='movies'),
-    resume = models.TextField(null=True, blank=True),
+    release_date = models.DateField(null=True, blank=True)
+    actors = models.ManyToManyField(Actor, related_name='movies')
+    resume = models.TextField(null=True, blank=True)
     maturity_rate = models.CharField(
         max_length=2,
         choices=MATURITY_RATES,
         null=True,
         blank=True
     )
-    photo = models.ImageField(upload_to='movies', blank=True, null=True)
+    photo = models.ImageField(upload_to='movies/', blank=True, null=True) # falta da /
     duration = models.DurationField(null=True, blank=True)
 
     # Retorna a duração formatada como horas e minutos
