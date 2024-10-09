@@ -1,12 +1,36 @@
-<div class="movie-detail">
-    <h1>{{movie.title}}</h1>
-    <img src="{{ movie.photo.url }}" alt="{{ movie.title }}">
-    <p>{{ movie.resume }}</p>
-    <p><strong> Release Date: </strong> {{ movie.release_date }}</p>
-    <p><strong>Genre:</strong> {{ movie.genre.name }}</p>
-    <p><strong>Actors:</strong>
-        {% for actor in movie.actors.all %}
-            <p> {{ actor.name }} </p>
-        {% endfor %}
-    </p>
+{% extends "base.html" %}
+
+{% block content %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'movies/css/movie_detail.css' %}">
+
+
+<div class="banner">
+    <img src="{{ movie.photo.url }}" alt="bg">
+
+    <div class="content">
+        <h1 class="movieTitle"> {{ movie.title }} </h1>
+        <h4>
+            <span> {{ movie.release_date }}</span>
+            <span><i> {{ movie.maturirity_rate }}+</i></span>
+            {% if movie.duration %}
+                <span>{{ movie.get_duration_display }}</span>
+            {% else %}
+                <span>Duração não disponível</span>
+            {% endif %}
+            <span>{{ movie.genre.name }}</span>
+        </h4>
+        <p>
+            {{ movie.resume }}
+        </p>
+        <h4> Estrelando:
+            {% for actor in movie.actors.all %}
+                {{ actor.name }}{% if not forloop.last %}, {% endif%}
+            {% endfor %}
+        </h4>
+    </div>
 </div>
+
+
+{% endblock%}

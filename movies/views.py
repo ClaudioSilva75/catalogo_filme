@@ -6,7 +6,7 @@ from genres.models import Genre
 
 class MoviesListView(ListView):
     model = Movie
-    template_name = 'base.html'
+    template_name = 'movies/movies_list.html'
     context_object_name = 'movies' # objeto que irá para template
 
     def queryset(self):
