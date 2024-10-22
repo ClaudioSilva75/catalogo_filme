@@ -1,13 +1,14 @@
 # from django.shortcuts import render
-from django.views.generic import ListView, DetailView
-from movies.models import Movie
+from django.views.generic import DetailView, ListView
+
 from genres.models import Genre
+from movies.models import Movie
 
 
 class MoviesListView(ListView):
     model = Movie
     template_name = 'movies/movies_list.html'
-    context_object_name = 'movies' # objeto que irá para template
+    context_object_name = 'genres' # objeto que irá para template
 
     def queryset(self):
         queryset = Genre.objects.prefetch_related('movies').all()
@@ -23,4 +24,3 @@ class MoviesDetailView(DetailView):
     model = Movie
     template_name = 'movies/movie_detail.html'
     context_object_name = 'movie'
-    
