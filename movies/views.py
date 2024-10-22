@@ -1,7 +1,8 @@
 # from django.shortcuts import render
-from django.views.generic import DetailView, ListView
+from django.views.generic import CreateView, DetailView, ListView
 
 from genres.models import Genre
+from movies.forms import MovieModelForm
 from movies.models import Movie
 
 
@@ -24,3 +25,9 @@ class MoviesDetailView(DetailView):
     model = Movie
     template_name = 'movies/movie_detail.html'
     context_object_name = 'movie'
+
+class NewMovieCreateView(CreateView):
+    model = Movie
+    form_class = MovieModelForm
+    template_name = 'movies/new_movie.html'
+    success_url = '/movies/'

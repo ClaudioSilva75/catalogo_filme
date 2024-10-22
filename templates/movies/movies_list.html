@@ -20,13 +20,13 @@
                 <div class="gui-card">
                     <div class="gui-card__media">
                         {% if movie.photo %}
-                            <img class="gui-card__img" src="{{ movie.photo.url }}" alt="Porter de {{ movie.title }}">
+                            <img class="gui-card__img" src="{{ movie.photo.url }}" alt="Poster de {{ movie.title }}">
                         {% else %}
                             <img src="https://via.placeholder.com/150" class="card-img-top" alt="Imagem padrão">
                         {% endif %}
                     </div>
 
-                    a href="{% url 'movie_detail' movie.pk %}">
+                    <a href="{% url 'movie_detail' movie.pk %}">
                         <div class="gui-card__details">
                             <div class="gui-card__title">{{ movie.title }}</div>
                         </div>

@@ -7,13 +7,13 @@
 
 
 <div class="banner">
-    <img src="{{ movie.photo.url }}" alt="bg">
+    <img src="{{ movie.photo.url }}" class="bg">
 
     <div class="content">
         <h1 class="movieTitle"> {{ movie.title }} </h1>
         <h4>
             <span> {{ movie.release_date }}</span>
-            <span><i> {{ movie.maturirity_rate }}+</i></span>
+            <span><i> {{ movie.maturirity_rate }}+ </i></span>
             {% if movie.duration %}
                 <span>{{ movie.get_duration_display }}</span>
             {% else %}
@@ -26,7 +26,7 @@
         </p>
         <h4> Estrelando:
             {% for actor in movie.actors.all %}
-                {{ actor.name }}{% if not forloop.last %}, {% endif%}
+                {{ actor.name }}{% if not forloop.last %}, {% endif %}
             {% endfor %}
         </h4>
     </div>
