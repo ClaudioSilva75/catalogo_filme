@@ -11,7 +11,7 @@ class MoviesListView(ListView):
     template_name = 'movies/movies_list.html'
     context_object_name = 'genres' # objeto que irá para template
 
-    def queryset(self):
+    def get_queryset(self):
         queryset = Genre.objects.prefetch_related('movies').all()
         search = self.request.GET.get('search')
 
@@ -25,6 +25,7 @@ class MoviesDetailView(DetailView):
     model = Movie
     template_name = 'movies/movie_detail.html'
     context_object_name = 'movie'
+
 
 class NewMovieCreateView(CreateView):
     model = Movie
