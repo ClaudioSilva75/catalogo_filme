@@ -9,7 +9,8 @@ from movies.models import Movie
 class MoviesListView(ListView):
     model = Movie
     template_name = 'movies/movies_list.html'
-    context_object_name = 'genres' # objeto que irá para template
+    # objeto que irá para template
+    context_object_name = 'genres'
 
     def get_queryset(self):
         queryset = Genre.objects.prefetch_related('movies').all()

@@ -4,6 +4,8 @@ from movies.models import Movie
 
 
 class MovieModelForm(forms.ModelForm):
-    class Meta: # Reescrita da classe Meta
+    # Reescrita da classe Meta
+    class Meta:
         model = Movie
-        fields = '__all__' # uso de todos os campos disponíveis
+        # uso de todos os campos disponíveis
+        fields = '__all__'
