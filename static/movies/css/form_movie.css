@@ -1,97 +1,126 @@
-/* form_movie.css */
-
-.form_body {
-    width: 75%; /* Ocupar 75% da largura disponível */
-    margin: 50px auto; /* Centraliza o formulário */
-    padding: 20px;
-    background: #ecf0f1; /* Fundo cinza claro */
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.form_body h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #2980b9; /* Azul */
-}
-
-.form_body form {
-    display: table; /* Usar display table para formatação */
-    width: 100%; /* Certifique-se de que o formulário ocupe toda a largura */
-}
-
-.form_body .form-group {
-    display: table-row; /* Cada grupo como uma linha de tabela */
-}
-
-.form_body label {
-    display: table-cell; /* Labels como células de tabela */
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #34495e; /* Azul escuro */
-    padding-right: 10px; /* Espaçamento entre label e campo */
-    width: 30%; /* Largura das labels */
-}
-
-.form_body input[type="text"],
-.form_body input[type="file"],
-.form_body textarea {
-    display: table-cell; /* Campos como células de tabela */
-    padding: 10px;
-    border: 1px solid #bdc3c7; /* Cinza claro */
-    border-radius: 4px;
-    font-size: 16px;
-    width: 70%; /* Largura dos campos */
-}
-
-.form_body input[type="text"]:focus,
-.form_body textarea:focus {
-    border-color: #2980b9; /* Azul claro */
-    outline: none;
-}
-
-.form_body .button-container {
-    display: flex; /* Usar flexbox para centralizar */
+/* Configurações gerais do layout */
+main {
+    padding: 0;
+    margin: 0;
+    min-height: 100vh; /* Garante que o conteúdo cubra pelo menos a altura total da tela */
+    width: 100%;
+    position: relative;
+    background-image: url('/static/img/background.jpg');
+    background-size: cover; /* Garante que a imagem de fundo cubra toda a tela */
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    display: flex;
     justify-content: center; /* Centraliza horizontalmente */
-    margin-top: 20px; /* Espaçamento acima do botão */
+    align-items: center; /* Centraliza verticalmente */
 }
 
-.form_body button {
-    padding: 5px 10px; /* Botão menor */
-    background-color: #2980b9; /* Azul principal */
+/* Escurece o fundo */
+main::before {
+    content: '';
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Garante que o escurecimento fique atrás do conteúdo */
+}
+
+/* Estilização do formulário */
+.form_body {
+    padding: 40px;
+    z-index: 2;
+    max-width: 500px; /* Aumenta a largura máxima do formulário */
+    width: 100%; /* Faz o formulário ocupar toda a largura disponível até 500px */
+    background-color: rgba(0, 0, 0, 0.85);
+    border-radius: 10px;
+    box-sizing: border-box;
+}
+
+/* Centraliza o título */
+.form_body h2 {
+    font-size: 28px;
+    color: #fff;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Estiliza os rótulos */
+.form_body label {
+    display: block;
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 5px;
+}
+
+/* Estiliza os campos de entrada */
+.form_body input,
+.form_body select,
+.form_body textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #333;
     color: #fff;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Efeito hover nos campos */
+.form_body input:hover,
+.form_body select:hover,
+.form_body textarea:hover {
+    background-color: #444;
+}
+
+/* Estiliza o botão */
+.form_body a,
+.form_body button{
+    height: 50px;
+    width: 100%;
+    color: #fff;
+    background-color: #e50914;
+    border-radius: 3px;
+    font-weight: bold;
+    font-size: 16px;
+    border: none;
+    margin-top: 20px;
     cursor: pointer;
-    font-size: 14px; /* Tamanho da fonte */
-    transition: background-color 0.3s;
 }
 
 .form_body button:hover {
-    background-color: #1a6d8d; /* Azul mais escuro para hover */
+    background-color: #fc1722;
 }
 
-.form_body .error {
-    color: #e74c3c; /* Vermelho para erros */
-    font-size: 14px;
-    margin-top: 5px;
-    display: table-row; /* Mensagens de erro na linha da tabela */
+/* Estiliza o texto de ajuda */
+.form_body .helptext {
+    font-size: 12px;
+    color: #bbb;
+    margin-top: -15px;
+    margin-bottom: 15px;
 }
 
-/* Media Query para responsividade */
-@media (max-width: 600px) {
-    .form_body .form-group {
-        display: block; /* Switch to block layout */
+
+/* Responsividade para telas maiores */
+@media (min-width: 1024px) {
+    .form_body {
+        max-width: 40%; /* Aumenta a largura do formulário em telas maiores */
     }
 
-    .form_body label {
-        width: 100%; /* Labels take full width */
-        margin-bottom: 10px; /* Spacing below labels */
+    .form_body h2 {
+        font-size: 28px; /* Aumenta o tamanho do título em telas maiores */
+    }
+}
+
+@media (min-width: 1440px) {
+    .form_body {
+        max-width: 30%; /* Aumenta ainda mais a largura do formulário em telas muito grandes */
+        margin-top: 50px;
     }
 
-    .form_body input[type="text"],
-    .form_body input[type="file"],
-    .form_body textarea {
-        width: 100%; /* Fields take full width */
+    .form_body h2 {
+        font-size: 32px; /* Aumenta o tamanho do título em telas muito grandes */
     }
 }
