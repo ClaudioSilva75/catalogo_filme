@@ -1,6 +1,12 @@
 from django.db import models
-from genres.models import Genre
+
 from actors.models import Actor
+from genres.models import Genre
+
+
+class MovieStatistics(models.Model):
+    total_movies = models.PositiveIntegerField(default=0)
+
 
 # Create your models here.
 class Movie(models.Model):
