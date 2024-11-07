@@ -12,7 +12,7 @@
     <div class="content">
         <h1 class="movieTitle"> {{ movie.title }} </h1>
         <h4>
-            <span> {{ movie.release_date }}</span>
+            <span> {{ movie.release_date|date:"Y" }}</span>
             <span><i> {{ movie.maturirity_rate }}+ </i></span>
             {% if movie.duration %}
                 <span>{{ movie.get_duration_display }}</span>
@@ -29,6 +29,11 @@
                 {{ actor.name }}{% if not forloop.last %}, {% endif %}
             {% endfor %}
         </h4>
+
+        <div class="buttons">
+            <a href="{% url 'movie_update' pk=object.pk %}"> Editar Filme</a>
+            <a href="{% url 'movie_delete' pk=object.pk %}"> Deletar Filme</a>
+        </div>
     </div>
 </div>
 

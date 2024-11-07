@@ -19,14 +19,36 @@
             <ul class="navigation">
                 <li><a href="#">Home</a></li>
                 <li><a href="{% url 'movies_list' %}">Movies</a></li>
-                <li><a href="{% url 'new_movie' %}">Cadastrar filme</a></li>
+                {% if user.is_staff %}
+                    <li><a href="{% url 'new_movie' %}">Cadastrar filme</a></li>
+                {% endif %}
             </ul>
         </nav>
-        <div class="search">
-            <form method="GET" action="{% url 'movies_list' %}">
-                <input type="text" name="search" placeholder="Search" value="{{ request.GET.search }}">
-            </form>
-        </div>
+        {% if user.is_authenticated and request.path == '/movies/' %}
+            <div class="search">
+                <form method="GET" action="{% url 'movies_list' %}">
+                    <input type="text" name="search" placeholder="Search" value="{{ request.GET.search }}">
+                </form>
+            </div>
+        {% endif %}
+
+            <ul class="navigation">
+                {% if not user.is_authenticated %}
+                    <li><a href="{% url 'register' %}">Cadastre-se</a></li>
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                {% endif %}
+                {% if user.is_authenticated %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Minha conta                        
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Sair</a></li>
+                        </ul>
+                    </li>
+
+                {% endif %}
+            </ul>
     </header>
 
     <main>

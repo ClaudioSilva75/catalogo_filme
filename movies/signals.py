@@ -11,6 +11,7 @@ def movie_catalog_update():
     )
     print(movie_count)
 
+
 # Para cada filme salvo, será contado quantos filmes há no catálogo
 @receiver(post_save, sender=Movie)
 def movie_post_save(sender, instance, **kwargs):

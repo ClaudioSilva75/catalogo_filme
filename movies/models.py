@@ -42,8 +42,6 @@ class Movie(models.Model):
         hours, remainder = divmod(total_seconds, 3600)
         minutes, _ = divmod(remainder, 60)
         return f"{hours}h {minutes}min"
-    
-    
+
     def __str__(self):
         return self.title
-        

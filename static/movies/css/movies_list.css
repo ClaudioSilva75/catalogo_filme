@@ -5,7 +5,6 @@ a:link,
 a:hover,
 a:active,
 a:visited {
-  -webkit-transition: color 150ms;
   transition: color 150ms;
   color: #95a5a6;
   text-decoration: none;
@@ -24,46 +23,41 @@ a:hover {
 
 /* Slider */
 .slider {
-  height: 214px;
+  height: 260px;
   position: relative;
-  margin: 0;
   padding: 0 3%;
-  -ms-touch-action: pan-y;
-  touch-action: pan-y;
+  overflow: hidden; /* Evita que a rolagem saia da área */
 }
 
 .slider h3 {
-  position: absolute;
   color: #fff;
-  top: 22px;
-  z-index: 30;
+  font-size: 24px;
+  padding: 15px;
+  z-index: 10;
 }
 
+/* Botões de controle */
 .slider .handle {
   position: absolute;
-  top: 0;
-  bottom: 0;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 20;
   width: 7%;
-  text-align: center;
-  display: flex;
-  justify-content: center;
   color: #fff;
   cursor: pointer;
 }
 
-.slider .handle.handlePrev {
-  left: 0px;
+.handlePrev {
+  left: 0;
 }
 
-.slider .handle.handleNext {
-  right: 11px;
+.handleNext {
+  right: 0;
 }
 
 /* Ícones */
 .fa {
   font-size: 46px;
-  margin-top: 120px;
   color: red;
 }
 
@@ -71,54 +65,30 @@ a:hover {
 .row {
   margin-top: 7%;
   overflow: hidden;
+  display: flex;
 }
 
 .row__inner {
-  -webkit-transition: 450ms -webkit-transform;
-  transition: 450ms -webkit-transform;
-  transition: 450ms transform;
-  transition: 450ms transform, 450ms -webkit-transform;
-  font-size: 0;
-  white-space: nowrap;
-  margin: 70.3125px 0;
-  padding-bottom: 10px;
-}
-
-.row__inner:hover {
-  -webkit-transform: translate3d(-62.5px, 0, 0);
-  transform: translate3d(-62.5px, 0, 0);
-}
-
-.row__inner:hover .gui-card {
-  opacity: 0.3;
-}
-
-.row__inner:hover .gui-card:hover {
-  -webkit-transform: scale(1.5);
-  transform: scale(1.5);
-  opacity: 1;
+  display: flex;
+  gap: 15px;
+  flex-wrap: nowrap;
+  transition: transform 450ms ease;
 }
 
 /* Cartão GUI */
 .gui-card {
   position: relative;
   display: inline-block;
-  width: 100%; /* Ajuste para que ocupe toda a largura disponível */
-  height: auto; /* Altura automática para manter a proporção */
-  margin-right: 10px;
   font-size: 20px;
   cursor: pointer;
-  -webkit-transition: 450ms all;
-  transition: 450ms all;
-  -webkit-transform-origin: center left;
-  transform-origin: center left;
+  transition: transform 450ms ease;
 }
 
 .gui-card__img {
-  width: 100%; /* Ajuste para que ocupe toda a largura disponível */
-  height: auto; /* Altura automática para manter a proporção */
-  -o-object-fit: cover; /* Mantém a imagem sem distorção */
+  width: 100%;
+  height: auto;
   object-fit: cover;
+  border-radius: 8px;
 }
 
 .gui-card__details {
@@ -129,18 +99,8 @@ a:hover {
   top: 0;
   font-size: 15px;
   opacity: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
-  -webkit-transition: 450ms opacity;
-  transition: 450ms opacity;
-}
-
-.gui-card__details:after,
-.gui-card__details:before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  display: #000;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
+  transition: opacity 450ms ease;
 }
 
 .gui-card:hover .gui-card__details {
@@ -150,49 +110,28 @@ a:hover {
 .gui-card__title {
   position: absolute;
   color: #fff;
-  bottom: 0;
-  margin-left: 30px;
+  bottom: 15px;
   padding: 10px;
 }
 
-.gui-card:hover ~ .gui-card {
-  -webkit-transform: translate3d(125px, 0, 0);
-  transform: translate3d(125px, 0, 0);
-}
-
-/* Consultas de mídia */
+/* Tamanhos responsivos */
 @media (min-width: 768px) {
   .gui-card {
-    width: 200px;
-    height: 112.5px; /* Proporção 16:9 */
-  }
-
-  .gui-card__img {
-    width: 200px;
-    height: 112.5px;
+    width: 180px;
+    height: auto;
   }
 }
 
 @media (min-width: 1024px) {
   .gui-card {
-    width: 250px;
-    height: 140.625px; /* Proporção 16:9 */
-  }
-
-  .gui-card__img {
-    width: 250px;
-    height: 140.625px;
+    width: 220px;
+    height: auto;
   }
 }
 
 @media (min-width: 1440px) {
   .gui-card {
-    width: 300px;
-    height: 168.75px; /* Proporção 16:9 */
-  }
-
-  .gui-card__img {
-    width: 300px;
-    height: 168.75px;
+    width: 280px;
+    height: auto;
   }
 }

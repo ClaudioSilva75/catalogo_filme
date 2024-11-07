@@ -19,16 +19,24 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 
-from movies.views import MoviesDetailView, MoviesListView, NewMovieCreateView
+from accounts.views import LoginView, LogoutView, RegisterView
+from movies.views import (MovieDeleteView, MoviesDetailView, MoviesListView,
+                          MovieUpdateView, NewMovieCreateView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    path('register/', RegisterView.as_view(), name='register'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
+
     # path('', MoviesListView.as_view(), name='movies_list'),
     path('movies/', MoviesListView.as_view(), name='movies_list'),
     path('movies/<int:pk>/', MoviesDetailView.as_view(), name='movie_detail'),
-
+    path('movie/<int:pk>update/', MovieUpdateView.as_view(), name='movie_update'),
+    path('movie/<int:pk>delete/', MovieDeleteView.as_view(), name='movie_delete'),
     path('new_movie/', NewMovieCreateView.as_view(), name='new_movie'),
+
 ]
 
 # Habilita uso de mídias no projeto

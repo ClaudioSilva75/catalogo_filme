@@ -4,31 +4,38 @@
 
 {% load static %}
 <link rel="stylesheet" type="text/css" href="{% static 'movies/css/movies_list.css' %}">
+<script src="{% static 'movies/js/movies_list.js' %}"></script>
 
 <div class="contain">
-    {% if genres %}
     {% for genre in genres %}
     <div class="slider">
         <h3>{{ genre.name }}</h3>
-        <span onmouseover="scrollEsquerda()" onmouseout="clearScroll()" class="handle handlePrev active">
+        
+        <!-- Botão de rolagem para a esquerda -->
+        <span 
+            onmouseover="scrollEsquerda('{{ genre.id }}')" 
+            onmouseout="clearScroll()" 
+            class="handle handlePrev"
+        >
             <i class="fa fa-caret-left" aria-hidden="true"></i>
         </span>
 
-        <div id="scroller" class="row">
+        <!-- Container de filmes com um ID dinâmico para cada gênero -->
+        <div id="scroller-{{ genre.id }}" class="row">
             <div class="row__inner">
                 {% for movie in genre.movies.all %}
                 <div class="gui-card">
                     <div class="gui-card__media">
-                        {% if movie.photo %}
-                            <img class="gui-card__img" src="{{ movie.photo.url }}" alt="Poster de {{ movie.title }}"/>
-                        {% else %}
-                            <img src="https://via.placeholder.com/150" class="card-img-top" alt="Imagem padrão">
-                        {% endif %}
+                        <img class="gui-card__img" src="{{ movie.photo.url }}" alt="Poster de {{ movie.title }}">
                     </div>
-
                     <a href="{% url 'movie_detail' movie.pk %}">
                         <div class="gui-card__details">
                             <div class="gui-card__title">{{ movie.title }}</div>
+                            <div class="gui-card__info">
+                                <span>{{ movie.get_maturity_rate_display }}</span> •
+                                <span>{{ movie.release_date|date:"Y" }}</span> •
+                                <span>{{ movie.get_duration_display }}</span>
+                            </div>
                         </div>
                     </a>
                 </div>
@@ -36,16 +43,18 @@
             </div>
         </div>
 
-        <span onmouseover="scrollDireita()" onmouseout="clearScroll()" class="handle handleNext active">
+        <!-- Botão de rolagem para a direita -->
+        <span 
+            onmouseover="scrollDireita('{{ genre.id }}')" 
+            onmouseout="clearScroll()" 
+            class="handle handleNext"
+        >
             <i class="fa fa-caret-right" aria-hidden="true"></i>
         </span>
     </div>
+    {% empty %}
+    <p>Não há filmes disponíveis.</p>
     {% endfor %}
-{% else %}
-    <p>Nenhum filme encontrado.</p>
-{% endif %}
-
 </div>
 
-<script src="{% static 'movies/js/movies_list.js' %}"></script>
 {% endblock %}

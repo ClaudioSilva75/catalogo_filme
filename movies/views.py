@@ -1,5 +1,6 @@
 # from django.shortcuts import render
-from django.views.generic import CreateView, DetailView, ListView
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
+                                  UpdateView)
 
 from genres.models import Genre
 from movies.forms import MovieModelForm
@@ -32,4 +33,17 @@ class NewMovieCreateView(CreateView):
     model = Movie
     form_class = MovieModelForm
     template_name = 'movies/new_movie.html'
+    success_url = '/movies/'
+
+
+class MovieUpdateView(UpdateView):
+    model = Movie
+    form_class = MovieModelForm
+    template_name = 'movies/movie_update.html'
+    success_url = '/movies/'
+
+
+class MovieDeleteView(DeleteView):
+    model = Movie
+    template_name = 'movies/movie_delete.html'
     success_url = '/movies/'
