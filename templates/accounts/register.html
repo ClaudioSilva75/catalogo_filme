@@ -10,7 +10,7 @@
         <h2>Cadastro</h2>
         <form enctype="multipart/form-data" method="post">
             {% csrf_token %}
-            {{ login_form.as_p }}
+            {{ user_form.as_p }}
             <button type="submit">Cadastrar</button>
         </form>
     </div>

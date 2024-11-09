@@ -100,51 +100,6 @@ h4:last-of-type a:hover {
     text-decoration: underline;
 }
 
-/* Estilos para os botões Editar e Deletar */
-.buttons {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    margin-top: 30px;
-}
-
-.buttons a {
-    display: inline-block;
-    padding: 12px 25px;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-/* Botão Editar */
-.buttons a[href*="update"] {
-    background-color: #007bff;
-}
-
-.buttons a[href*="update"]:hover {
-    background-color: #0056b3;
-    transform: scale(1.05); /* Leve aumento do tamanho do botão ao passar o mouse */
-}
-
-/* Botão Deletar */
-.buttons a[href*="delete"] {
-    background-color: #dc3545;
-}
-
-.buttons a[href*="delete"]:hover {
-    background-color: #c82333;
-    transform: scale(1.05); /* Leve aumento do tamanho do botão ao passar o mouse */
-}
-
-/* Foco nos botões (para navegação com teclado) */
-.buttons a:focus {
-    outline: 2px solid #fff;
-    outline-offset: 2px;
-}
-
 /* Responsividade */
 @media (max-width: 1024px) {
     header {

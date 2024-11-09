@@ -1,4 +1,6 @@
 # from django.shortcuts import render
+from django.contrib.auth.decorators import login_required, permission_required
+from django.utils.decorators import method_decorator
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
 
@@ -28,21 +30,24 @@ class MoviesDetailView(DetailView):
     template_name = 'movies/movie_detail.html'
     context_object_name = 'movie'
 
-
+@method_decorator(login_required(login_url='login'), name='dispatch')
+@method_decorator(permission_required('movies.add_movie', raise_exception=True), name='dispatch')
 class NewMovieCreateView(CreateView):
     model = Movie
     form_class = MovieModelForm
     template_name = 'movies/new_movie.html'
     success_url = '/movies/'
 
-
+@method_decorator(login_required(login_url='login'), name='dispatch')
+@method_decorator(permission_required('movies.change_movie', raise_exception=True), name='dispatch')
 class MovieUpdateView(UpdateView):
     model = Movie
     form_class = MovieModelForm
     template_name = 'movies/movie_update.html'
     success_url = '/movies/'
 
-
+@method_decorator(login_required(login_url='login'), name='dispatch')
+@method_decorator(permission_required('movies.delete_movie', raise_exception=True), name='dispatch')
 class MovieDeleteView(DeleteView):
     model = Movie
     template_name = 'movies/movie_delete.html'

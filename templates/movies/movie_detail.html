@@ -29,11 +29,16 @@
                 {{ actor.name }}{% if not forloop.last %}, {% endif %}
             {% endfor %}
         </h4>
-
+    {% if user.is_authenticated %}
         <div class="buttons">
+        {% if perms.movies.change_movie %}
             <a href="{% url 'movie_update' pk=object.pk %}"> Editar Filme</a>
+        {% endif %}
+        {% if perms.movies.delete_movie %}
             <a href="{% url 'movie_delete' pk=object.pk %}"> Deletar Filme</a>
+        {% endif %}
         </div>
+    {% endif %}
     </div>
 </div>
 
