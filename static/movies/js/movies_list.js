@@ -1,29 +1,15 @@
-// movies_list.js
-
 let intervalo;
 
-// Função para rolar para a direita
-function scrollDireita(genreId) {
-    clearScroll();
-    const scroller = document.getElementById('scroller-' + genreId);
-    if (scroller) {
-        intervalo = setInterval(() => {
-            scroller.scrollLeft += 2; // Aumentar ou diminuir para ajustar a velocidade
-        }, 10);
-    }
+function scrollEsquerda(id) {
+    var scroller = document.getElementById("scroller-" + id);
+    scroller.scrollLeft -= 220; // Desloca o conteúdo para a esquerda
 }
-
-// Função para rolar para a esquerda
-function scrollEsquerda(genreId) {
-    clearScroll();
-    const scroller = document.getElementById('scroller-' + genreId);
-    if (scroller) {
-        intervalo = setInterval(() => {
-            scroller.scrollLeft -= 2; // Aumentar ou diminuir para ajustar a velocidade
-        }, 10);
-    }
+  
+function scrollDireita(id) {
+var scroller = document.getElementById("scroller-" + id);
+scroller.scrollLeft += 220; // Desloca o conteúdo para a direita
 }
-
+  
 // Função para parar a rolagem
 function clearScroll() {
     if (intervalo) {
