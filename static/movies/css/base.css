@@ -86,6 +86,32 @@ header nav {
     color: #fff;
 }
 
+/* Adicione os novos estilos aqui */
+.row {
+    overflow: hidden; /* Oculta a barra de rolagem */
+    white-space: nowrap; /* Assegura que os itens não quebrem linha */
+    position: relative; /* Necessário para posicionar as setas */ }
+
+.row__inner {
+    display: inline-block;
+    transition: transform 0.3s ease; /* Para uma rolagem suave */
+}
+.handlePrev, .handleNext {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+}
+.handlePrev {
+    left: 0;
+}
+.handleNext {
+    right: 0;
+}
+
 .card {
     margin-top: 5%;
     --bs-card-spacer-y: 2rem;
